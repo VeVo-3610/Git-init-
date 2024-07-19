@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* src/custom.css */
+
+body {
+  @apply w-screen h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-purple-500 to-pink-500;
+  font-family: "Montserrat", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.carousel {
+  @apply relative;
+  width: var(--card-size);
+  height: var(--card-size);
+  perspective: 500px;
+  transform-style: preserve-3d;
+}
+
+.card-container {
+  @apply absolute w-full h-full transition-all ease-out duration-300;
+  transform: rotateY(calc(var(--offset) * 50deg))
+    scaleY(calc(1 + var(--abs-offset) * -0.4))
+    translateZ(calc(var(--abs-offset) * -30rem))
+    translateX(calc(var(--direction) * -5rem));
+  filter: blur(calc(var(--abs-offset) * 1rem));
+}
+
+.card {
+  @apply w-full h-full p-8 bg-purple-500 rounded-lg text-justify transition-all ease-out duration-300;
+  background-color: hsl(280deg, 40%, calc(100% - var(--abs-offset) * 50%));
+  color: var(--color-gray);
+}
+
+.card h2 {
+  @apply text-center text-2xl font-bold mb-4;
+  color: var(--color-black);
+}
+
+.card p,
+.card h2 {
+  transition: all 0.3s ease-out;
+  opacity: var(--active);
+}
+
+.nav {
+  @apply text-white text-5xl absolute flex items-center justify-center top-1/2 z-10 cursor-pointer;
+  background: unset;
+  border: unset;
+  user-select: none;
+}
+
+.nav.left {
+  @apply transform -translate-x-full -translate-y-1/2;
+}
+
+.nav.right {
+  @apply right-0 transform translate-x-full -translate-y-1/2;
+}
